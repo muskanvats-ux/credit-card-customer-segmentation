@@ -3,6 +3,5 @@ uvicorn
 pandas
 numpy
 scikit-learn
-SQLAlchemy
-PyMySQL
-mysql-connector-python
+sqlalchemy
+pymysql
