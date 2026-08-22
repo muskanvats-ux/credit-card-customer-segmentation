@@ -3,6 +3,5 @@ uvicorn
 pandas
 numpy
 scikit-learn
-sqlalchemy
 pymysql
-python-dotenv
+sqlalchemy
