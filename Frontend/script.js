@@ -253,7 +253,7 @@ async function predictSegment() {
     try {
 
         const url =
-            `https://credit-card-customer-segmentation-production.up.railway.app/predict/predict?avg_credit_limit=${creditLimit}` +
+            `https://credit-card-customer-segmentation-production.up.railway.app/predict?avg_credit_limit=${creditLimit}` +
             `&total_credit_cards=${creditCards}` +
             `&total_visits_bank=${bankVisits}` +
             `&total_visits_online=${onlineVisits}` +
