@@ -36,7 +36,7 @@ df = df[
 df.to_sql(
     "customers",
     con=engine,
-    if_exists="append",
+    if_exists="replace",
     index=False
 )
 
