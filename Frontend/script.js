@@ -215,7 +215,8 @@ async function loadCustomers() {
     }
 }
 
-loadCustomers();async function predictSegment() {
+loadCustomers();
+async function predictSegment() {
 
     const creditLimit =
         document.getElementById("creditLimit").value;
@@ -270,6 +271,7 @@ loadCustomers();async function predictSegment() {
         }
 
         const data = await response.json();
+        console.log("ACTUAL PREDICTION RESPONSE:", data);
 
         console.log("Prediction response:", data);
 
