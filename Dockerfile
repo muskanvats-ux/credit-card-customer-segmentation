@@ -11,6 +11,5 @@ COPY Frontend ./Frontend
 COPY Data ./Data
 
 WORKDIR /app/Backend
-RUN cd /app/Backend && python import_data.py
 
 CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
