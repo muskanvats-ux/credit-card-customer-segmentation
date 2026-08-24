@@ -215,8 +215,7 @@ async function loadCustomers() {
     }
 }
 
-loadCustomers();
-async function predictSegment() {
+loadCustomers();async function predictSegment() {
 
     const creditLimit =
         document.getElementById("creditLimit").value;
@@ -243,25 +242,36 @@ async function predictSegment() {
         !onlineVisits ||
         !callsMade
     ) {
-
         result.innerHTML =
             "<p>Please fill all fields.</p>";
-
         return;
     }
 
     try {
 
         const url =
-            `https://credit-card-customer-segmentation-production.up.railway.app/predict?avg_credit_limit=${creditLimit}` +
-            `&total_credit_cards=${creditCards}` +
-            `&total_visits_bank=${bankVisits}` +
-            `&total_visits_online=${onlineVisits}` +
-            `&total_calls_made=${callsMade}`;
+            `https://credit-card-customer-segmentation-production.up.railway.app/predict?` +
+            `avg_credit_limit=${encodeURIComponent(creditLimit)}` +
+            `&total_credit_cards=${encodeURIComponent(creditCards)}` +
+            `&total_visits_bank=${encodeURIComponent(bankVisits)}` +
+            `&total_visits_online=${encodeURIComponent(onlineVisits)}` +
+            `&total_calls_made=${encodeURIComponent(callsMade)}`;
+
+        console.log("Prediction URL:", url);
 
         const response = await fetch(url);
 
+        console.log("Response status:", response.status);
+
+        if (!response.ok) {
+            throw new Error(
+                `Prediction request failed: ${response.status}`
+            );
+        }
+
         const data = await response.json();
+
+        console.log("Prediction response:", data);
 
         result.innerHTML = `
             <div class="customer-card">
@@ -283,10 +293,10 @@ async function predictSegment() {
 
     } catch (error) {
 
-        result.innerHTML =
-            "<p>Unable to generate prediction.</p>";
+        console.error("Prediction error:", error);
 
-        console.error(error);
+        result.innerHTML =
+            "<p>Unable to get prediction from the server.</p>";
     }
 }
 async function loadSegmentChart() {
